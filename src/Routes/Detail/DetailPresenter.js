@@ -3,7 +3,11 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import Helmet from "react-helmet";
 import { Link } from "react-router-dom";
+import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import ReactCountryFlag from "react-country-flag";
+import "./react-tabs.css";
 import Loader from "../../Components/Loader";
+import background from "../../assets/noPosterSmall.png";
 
 const Container = styled.div`
   height: calc(100vh - 50px);
@@ -81,9 +85,45 @@ const ImdbLink = styled(Link)`
   font-weight: bold;
 `;
 
-const BarContainer = styled.div``;
-const BarUl = styled.ul``;
-const BarLi = styled.li``;
+const YLink = styled(Link)`
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  margin-bottom: 5px;
+  margin-left: 3px;
+  &:hover {
+    color: yellow;
+  }
+  width: max-content;
+`;
+const Icon = styled.svg`
+  width: 2em;
+  height: 2em;
+  margin-right: 5px;
+`;
+const Image = styled.div`
+  background-image: url(${(props) => props.bgUrl});
+  height: 100px;
+  width: 100px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+`;
+
+const Grid = styled.div`
+  margin-top: 25px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 125px);
+  grid-gap: 25px;
+`;
+
+const Company = styled.div``;
+const CountryBox = styled.div`
+  display: flex;
+`;
+const Country = styled.div`
+  margin-right: 5px;
+`;
 
 const DetailPresenter = ({ result, loading, error }) =>
   loading ? (
@@ -109,7 +149,7 @@ const DetailPresenter = ({ result, loading, error }) =>
           bgImage={
             result.poster_path
               ? `https://image.tmdb.org/t/p/original${result.poster_path}`
-              : require("../../assets/noPosterSmall.png")
+              : background
           }
         />
         <Data>
@@ -154,13 +194,87 @@ const DetailPresenter = ({ result, loading, error }) =>
             )}
           </ItemContainer>
           <Overview>{result.overview}</Overview>
-          <BarContainer>
-            <BarUl>
-              <BarLi>YouTube Videos</BarLi>
-              <BarLi>Production Company</BarLi>
-              <BarLi>Production Countries</BarLi>
-            </BarUl>
-          </BarContainer>
+          <Tabs>
+            <TabList>
+              <Tab>YouTube Videos</Tab>
+              <Tab>Production Company</Tab>
+              <Tab>Production Countries</Tab>
+            </TabList>
+
+            <TabPanel>
+              {result.videos.results.map((video) => (
+                <>
+                  <YLink
+                    onClick={() =>
+                      window.open(
+                        `https://www.youtube.com/watch?v=${video.key}`,
+                        "_blank"
+                      )
+                    }
+                  >
+                    <Icon
+                      xmlns="http://www.w3.org/2000/Icon"
+                      class="h-6 w-6"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"
+                      />
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
+                    </Icon>
+                    {video.name}
+                  </YLink>
+                </>
+              ))}
+            </TabPanel>
+            <TabPanel>
+              <Grid>
+                {result.production_companies.map((company) => (
+                  <>
+                    <Company>
+                      <Image
+                        bgUrl={
+                          company.logo_path
+                            ? `https://image.tmdb.org/t/p/w200${company.logo_path}`
+                            : background
+                        }
+                      ></Image>
+                      {company.name}
+                    </Company>
+                  </>
+                ))}
+              </Grid>
+            </TabPanel>
+            <TabPanel>
+              <CountryBox>
+                {result.production_countries.map((country) => (
+                  <>
+                    <Country>
+                      <ReactCountryFlag
+                        countryCode={country.iso_3166_1}
+                        style={{
+                          width: "3em",
+                          height: "3em",
+                        }}
+                        title={country.name}
+                        svg
+                      />
+                    </Country>
+                  </>
+                ))}
+              </CountryBox>
+            </TabPanel>
+          </Tabs>
         </Data>
       </Content>
     </Container>
