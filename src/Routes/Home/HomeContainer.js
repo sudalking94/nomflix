@@ -2,14 +2,17 @@ import React from "react";
 import HomePresenter from "./HomePresenter";
 import { moviesApi } from "../../api";
 
-export default class extends React.Component {
-  state = {
-    nowPlaying: null,
-    upcoming: null,
-    popular: null,
-    error: null,
-    loading: true,
-  };
+class HomeContainer extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      nowPlaying: null,
+      upcoming: null,
+      popular: null,
+      error: null,
+      loading: true,
+    };
+  }
 
   async componentDidMount() {
     try {
@@ -51,3 +54,5 @@ export default class extends React.Component {
     );
   }
 }
+
+export default HomeContainer;

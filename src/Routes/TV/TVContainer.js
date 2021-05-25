@@ -2,14 +2,17 @@ import React from "react";
 import TVPresenter from "./TVPresenter";
 import { tvApi } from "../../api";
 
-export default class extends React.Component {
-  state = {
-    topRated: null,
-    popular: null,
-    airingToday: null,
-    loading: true,
-    error: null,
-  };
+class TVContainer extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      topRated: null,
+      popular: null,
+      airingToday: null,
+      loading: true,
+      error: null,
+    };
+  }
 
   async componentDidMount() {
     try {
@@ -45,3 +48,5 @@ export default class extends React.Component {
     );
   }
 }
+
+export default TVContainer;

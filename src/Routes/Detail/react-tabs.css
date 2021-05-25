@@ -34,4 +34,6 @@
 .react-tabs__tab-panel--selected {
   display: flex;
   flex-direction: column;
+  height: 12em;
+  overflow: auto;
 }

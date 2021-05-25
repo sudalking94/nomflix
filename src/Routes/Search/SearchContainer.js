@@ -2,14 +2,17 @@ import React from "react";
 import SearchPresenter from "./SearchPresenter";
 import { moviesApi, tvApi } from "../../api";
 
-export default class extends React.Component {
-  state = {
-    movieResults: null,
-    tvResults: null,
-    searchTerm: "",
-    loading: false,
-    error: null,
-  };
+class SearchContainer extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      movieResults: null,
+      tvResults: null,
+      searchTerm: "",
+      loading: false,
+      error: null,
+    };
+  }
 
   handleSubmit = (event) => {
     event.preventDefault();
@@ -64,3 +67,5 @@ export default class extends React.Component {
     );
   }
 }
+
+export default SearchContainer;
