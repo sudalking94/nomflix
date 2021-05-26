@@ -1,5 +1,5 @@
 import React from "react";
-import { HashRouter, Route, Redirect, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
 import Home from "../Routes/Home";
 import TV from "../Routes/TV";
 import Header from "./Header";
@@ -7,7 +7,7 @@ import Search from "../Routes/Search";
 import Detail from "../Routes/Detail";
 
 const Router = () => (
-  <HashRouter>
+  <BrowserRouter>
     <>
       <Header />
       <Switch>
@@ -19,7 +19,7 @@ const Router = () => (
         <Redirect from="*" to="/" />
       </Switch>
     </>
-  </HashRouter>
+  </BrowserRouter>
 );
 
 export default Router;
