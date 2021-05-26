@@ -272,8 +272,12 @@ const DetailPresenter = ({ result, loading, error }) =>
               ></Collections>
             </>
           )}
-          {result.created_by && <Creator result={result}></Creator>}
-          {result.seasons && <Season result={result}></Season>}
+          {result.created_by && result.created_by.length > 0 && (
+            <Creator result={result}></Creator>
+          )}
+          {result.seasons && result.seasons.length > 0 && (
+            <Season result={result}></Season>
+          )}
         </Data>
       </Content>
     </Container>
