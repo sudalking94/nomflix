@@ -1,29 +1,23 @@
-# Nomflix
+# 기능
 
-Learning React and ES6 by building a Movie Discovery App.
+- Home 화면
+- Tv 화면
+- Search 화면
+- Detail 화면
 
-## Screens
+# 사용 기술
 
-- [ ] Home
-- [ ] TV Shows
-- [ ] Search
-- [ ] Detail
+- React
+- styled components
 
-## API Verbs
+# 필수 설치 항목
 
-- [x] Now playing (Movie)
-- [x] Upcoming (Movie)
-- [x] Top Rated (TV)
-- [x] Popular (TV, X)
-- [x] Airing Today (TV)
-- [x] TV Show Detail
-- [x] Movie Detail
-- [x] Search (Movie, TV)
+- npm
 
-## Code Challenges
+# 설치 순서
 
-- [x] IMDB Link
-- [x] Tabs inside of Movie / Show Details (YT Videos, Production Company & Countries)
-- [x] Collections Link
-- [x] /collections Route
-- [x] On TV Show, show seasons and creators
+```
+git clone https://github.com/sudalking94/nomflix
+npm i
+npm start
+```
