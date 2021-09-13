@@ -5,10 +5,11 @@
 - Search 화면
 - Detail 화면
 
-# 사용 기술
-
+# 사용 언어,라이브러리,툴
+- Javascript
 - React
 - styled components
+- VS CODE
 
 # 필수 설치 항목
 
@@ -18,6 +19,10 @@
 
 ```
 git clone https://github.com/sudalking94/nomflix
+```
+
+#### 설치한 파일 폴더 내부에서 dependency 
+```
 npm i
 npm start
 ```
